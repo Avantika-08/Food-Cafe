@@ -11,46 +11,38 @@ print('-'*80)
 user=pd.read_csv('user_data.csv')
 
 time.sleep(1)
-print("List of Users")
+##print("List of Users")
 print('+'*30)
 time.sleep(1)
-print(user["username"])
+##print(user["username"])
 print('+'*30)
 
 p=list(user["username"])
 q=list(user["password"])
 time.sleep(1)
 a=int(input("Press 1 for Existing User/Press 2 for New User: "))
-if a==1:
-    Username=input("Enter Username: ")
-    if Username in p:
-        for o in range (len(p)):
-            if Username==p[o]:
-                Password=input("Enter Password: ")
-                for u in range (len(q)):
-                    if Password==q[u]:
-                        print('+'*30)
-                        print("Logged in Succesfully")
-                        print('+'*30)
-                        print("Welcome ",Username)
-                        break
-                    elif Password!=q[u]:
-                        continue
+if a == 1:
+    username = input("Enter Username: ")
+    if username in p:
+        password = input("Enter Password: ")
+        if password in q:
+            print('+' * 30)
+            print("Logged in Successfully")
+            print('+' * 30)
+            print("Welcome", username)
+        else:
+            l = input("Forgot Password Y/N: ")
+            if l == "Y":
+                #print(p)
+                new_password = input("Enter new PASSWORD: ")
+                if new_password in q:
+                    print('+' * 30)
+                    print("Welcome", username)
                 else:
-                    
-                    l=input("Forgot Password Y/N: ")
-                    if l == "Y":
-                        print(user)
-                        Pass = int(input("Enter PASSWORD: "))
-                        for w in range(len(q)):
-                            if Pass == q[w]:
-                                print()
-                                print('+' * 30)
-                                print("Welcome", Username)
-                            else:
-                                print()
-                                print('+' * 30)
-                                print("THANKS FOR USING OUR APP")
-                        else:
-                                print("THANKS FOR USING OUR APP")
-                                break
+                    print('+' * 30)
+                    print("THANKS FOR USING OUR APP")
+            else:
+                print("INVALID USERNAME")
+                print("TRY AGAIN")
+    else:
+        print("Username not found. Please try again.")
